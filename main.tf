@@ -39,21 +39,21 @@ resource "aws_security_group" "hashicat" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   ingress {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/8"]
   }
 
   egress {
@@ -144,7 +144,7 @@ resource "aws_instance" "hashicat" {
 # Sync everything in files/ to the remote VM.
 # Set up some environment variables for our script.
 # Add execute permissions to our scripts.
-# Run the deploy_app.sh script.
+# Run the deploy_app.sh script
 resource "null_resource" "configure-cat-app" {
   depends_on = [aws_eip_association.hashicat]
 
